@@ -1,5 +1,6 @@
 node_modules
 test_path/
+trinci-node/
 package-lock.json
 publisher.json
 build/
