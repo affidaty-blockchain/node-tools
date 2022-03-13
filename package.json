@@ -1,0 +1,25 @@
+{
+  "name": "create-blockchain",
+  "version": "1.0.0",
+  "description": "tool for creating smart contracts for blockchains and other uses for the blockchain",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/affidaty-blockchain/node-tools.git"
+  },
+  "keywords": [
+    "blockchain",
+    "trinci",
+    "smart",
+    "contract"
+  ],
+  "author": "Affidaty S.p.a. - Trinci Blockchain",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/affidaty-blockchain/node-tools/issues"
+  },
+  "homepage": "https://github.com/affidaty-blockchain/node-tools#readme"
+}
