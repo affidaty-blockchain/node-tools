@@ -61,7 +61,7 @@
   {
     type: 'confirm',
     name: 'publisherKey',
-    message: "Do you want to create a ney keypair for publish this smart contract? (if NO, you can use after 4rya credentials)",
+    message: "Do you want to create a new key pair for publish this smart contract? (if NO, you can use after 4rya credentials)",
     
   }
   ,
