@@ -1,6 +1,6 @@
 {
   "name": "create-blockchain",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "tool for creating smart contracts for blockchains and other uses for the blockchain",
   "main": "./src/index.js",
   "scripts": {

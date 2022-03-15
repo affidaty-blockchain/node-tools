@@ -98,6 +98,7 @@
         cloneNode(answers.name);
     }
     console.log("All DONE!");
-    console.log("Now you can run npm install");
+    console.log(`Now you can do`);
+    console.log(`cd ${answers.name} && npm install`);
  });
  
