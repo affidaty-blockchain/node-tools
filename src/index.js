@@ -4,16 +4,16 @@
  const inquirer = require('inquirer');
  const {cloneSDK,cloneNode, createRepoFolders} = require('./utils/git');
  const {updatePackageJson,createKeyPairs,createTrinciJson} = require("./utils/package");
- 
-
- console.log('Hi, welcome to Trinci SmartContract and Blockchain generator');
- const requireLetterAndNumber = (value) => {
-    if (/\w/.test(value) && /\d/.test(value)) {
-      return true;
-    }
-  
-    return 'Password need to have at least a letter and a number';
-  };
+ const chalk = require('chalk');
+const warning = chalk.hex('#FFA500');
+const present = function (msg) {
+  console.log(chalk.green(msg)); 
+}
+const info = function(msg) {
+  console.log(chalk.grey(msg));
+}
+console.log('\x1Bc'); // Clear screen
+present('Hi, welcome to Trinci SmartContract and Blockchain generator');
 
  const questions = [
    {
@@ -24,7 +24,7 @@
         if (new RegExp("^(?:@[a-z0-9-*~][a-z0-9-*._~]*/)?[a-z0-9-~][a-z0-9-._~]*$").test(value)) {
             return true;
         }
-        return "Name not valid : pattern: ^(?:@[a-z0-9-*~][a-z0-9-*._~]*/)?[a-z0-9-~][a-z0-9-._~]*$";
+        return warning("Name not valid : pattern: ^(?:@[a-z0-9-*~][a-z0-9-*._~]*/)?[a-z0-9-~][a-z0-9-._~]*$");
      },
    },
    {
@@ -77,7 +77,7 @@
  inquirer.prompt(questions).then(async (answers) => {
     createRepoFolders(answers.name);
     cloneSDK(answers.name);
-    console.log("Updating json file....");
+    info("Updating json file....");
     const packageJsonPath = `./${answers.name}/package.json`;
     updatePackageJson(packageJsonPath,{name:answers.name,description:answers.description,version:answers.version});
     let keypair = {accountId:""};
@@ -85,7 +85,7 @@
         console.log("Generating keypair...");
         keypair = await createKeyPairs(`./${answers.name}/publisher.json`);
     }
-    console.log("Generating trinci.json ...");
+    info("Generating trinci.json ...");
     const trinciJsonPath = `./${answers.name}/trinci.json`;
     createTrinciJson(trinciJsonPath,{
         name:answers.author,
@@ -97,8 +97,8 @@
     if(answers.trinciNode) {
         cloneNode(answers.name);
     }
-    console.log("All DONE!");
+    console.log(chalk.bold.green("All DONE!"));
     console.log(`Now you can do`);
-    console.log(`cd ${answers.name} && npm install`);
+    console.log(chalk.bold.blue(`$ cd ${answers.name} && npm install`));
  });
  
