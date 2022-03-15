@@ -4,7 +4,7 @@
   "description": "tool for creating smart contracts for blockchains and other uses for the blockchain",
   "main": "./src/index.js",
   "scripts": {
-    "start" : "node ./src/index.js",
+    "start": "node ./src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -27,6 +27,7 @@
   },
   "homepage": "https://github.com/affidaty-blockchain/node-tools#readme",
   "dependencies": {
+    "@affidaty/t2-lib": "^2.0.4",
     "chalk": "^5.0.1",
     "inquirer": "^8.2.1"
   }

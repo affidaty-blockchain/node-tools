@@ -74,7 +74,7 @@
   }
  ];
  
- inquirer.prompt(questions).then((answers) => {
+ inquirer.prompt(questions).then(async (answers) => {
     createRepoFolders(answers.name);
     cloneSDK(answers.name);
     console.log("Updating json file....");
@@ -83,7 +83,7 @@
     let keypair = {accountId:""};
     if(answers.publisherKey) {
         console.log("Generating keypair...");
-        keypair = createKeyPairs(`./${answers.name}/publisher.json`);
+        keypair = await createKeyPairs(`./${answers.name}/publisher.json`);
     }
     console.log("Generating trinci.json ...");
     const trinciJsonPath = `./${answers.name}/trinci.json`;
