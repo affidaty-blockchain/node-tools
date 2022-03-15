@@ -1,6 +1,6 @@
 {
   "name": "create-blockchain",
-  "version": "1.0.0",
+  "version": "1.0.8",
   "description": "tool for creating smart contracts for blockchains and other uses for the blockchain",
   "main": "./src/index.js",
   "scripts": {
@@ -17,6 +17,9 @@
     "smart",
     "contract"
   ],
+  "bin": {
+    "create-blockchain": "./src/index.js"
+  },
   "author": "Affidaty S.p.a. - Trinci Blockchain",
   "license": "ISC",
   "bugs": {

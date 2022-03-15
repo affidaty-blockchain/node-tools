@@ -1,6 +1,8 @@
+#!/usr/bin/env node
+
 'use strict';
  const inquirer = require('inquirer');
- const {cloneSDK,cloneNode} = require('./utils/git');
+ const {cloneSDK,cloneNode, createRepoFolders} = require('./utils/git');
  const {updatePackageJson,createKeyPairs,createTrinciJson} = require("./utils/package");
  
 
@@ -73,16 +75,19 @@
  ];
  
  inquirer.prompt(questions).then((answers) => {
-    cloneSDK();
+    createRepoFolders(answers.name);
+    cloneSDK(answers.name);
     console.log("Updating json file....");
-    updatePackageJson("./test_path/package.json",{name:answers.name,description:answers.description,version:answers.version});
+    const packageJsonPath = `./${answers.name}/package.json`;
+    updatePackageJson(packageJsonPath,{name:answers.name,description:answers.description,version:answers.version});
     let keypair = {accountId:""};
     if(answers.publisherKey) {
         console.log("Generating keypair...");
-        keypair = createKeyPairs("./publisher.json");
+        keypair = createKeyPairs(`./${answers.name}/publisher.json`);
     }
     console.log("Generating trinci.json ...");
-    createTrinciJson("./trinci.json",{
+    const trinciJsonPath = `./${answers.name}/trinci.json`;
+    createTrinciJson(trinciJsonPath,{
         name:answers.author,
         description:answers.description,
         version:answers.version,
@@ -90,7 +95,7 @@
         pulisher :  keypair.accountId
     });
     if(answers.trinciNode) {
-        cloneNode();
+        cloneNode(answers.name);
     }
     console.log("All DONE!");
     console.log("Now you can run npm install");
