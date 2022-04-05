@@ -7,7 +7,8 @@ function createRepoFolders(folderName) {
 
 function cloneSDK(folder) {
     console.log("Cloning SDK....");
-	const cmd = "cd "+folder+" && git clone https://github.com/affidaty-blockchain/trinci-sdk-assemblyscript.git && cp -R ./trinci-sdk-assemblyscript/boilerplate/* ./ && rm -rf ./trinci-sdk-assemblyscript";
+	//const cmd = "cd "+folder+" && git clone https://github.com/affidaty-blockchain/trinci-sdk-assemblyscript.git && cp -R ./trinci-sdk-assemblyscript/boilerplate/* ./ && rm -rf ./trinci-sdk-assemblyscript";
+    const cmd = "cp -R ./"+folder+"/node_modules/@affidaty/trinci-sdk-as/boilerplate/* ./"+folder;
     return execSync(cmd);
 }
 
