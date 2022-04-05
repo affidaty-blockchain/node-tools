@@ -75,8 +75,10 @@ present('Hi, welcome to Trinci SmartContract and Blockchain generator');
  ];
  
  inquirer.prompt(questions).then(async (answers) => {
+  
     createRepoFolders(answers.name);
     cloneSDK(answers.name);
+    
     info("Updating json file....");
     const packageJsonPath = `./${answers.name}/package.json`;
     updatePackageJson(packageJsonPath,{name:answers.name,description:answers.description,version:answers.version});
