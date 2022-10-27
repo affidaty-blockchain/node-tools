@@ -1,17 +1,54 @@
-const fs = require("fs");
-const Account = require("@affidaty/t2-lib").Account;
-const arrayBufferToBase58 = require("@affidaty/t2-lib").binConversions.arrayBufferToBase58;
+'use strict';
 
-function updatePackageJson(path,data) {
-    const package = JSON.parse(fs.readFileSync(path));
-    Object.assign(package,data);
-    fs.writeFileSync(path,JSON.stringify(package, null, 4));
+import fs from 'fs';
+import { Account, binConversions } from '@affidaty/t2-lib';
 
+const arrayBufferToBase58 = binConversions.arrayBufferToBase58;
+
+export function updateJsonFile(path, newData) {
+    const jsonObject = JSON.parse(fs.readFileSync(path));
+    Object.assign(jsonObject, newData);
+    fs.writeFileSync(path, JSON.stringify(jsonObject, null, 4));
 }
-function createTrinciJson(path,data) {
+
+/**
+ * @param {string} filePath 
+ * @param {{[key: string]: string}} scripts 
+ */
+export function updatePackageScripts(filePath, scripts) {
+    const jsonObject = JSON.parse(fs.readFileSync(filePath));
+    for (const [scriptName, scriptCommand] of Object.entries(scripts)) {
+        jsonObject.scripts[scriptName] = scriptCommand;
+    }
+    fs.writeFileSync(filePath, JSON.stringify(jsonObject, null, 4));
+}
+
+export function objectFromJsonFile(jsonFilePath) {
+    return JSON.parse(fs.readFileSync(jsonFilePath));
+}
+
+export function updateAsconfigJson(path, outFileName) {
+    const tempOutFileName = outFileName.toLowerCase().replaceAll("/ /g", "_");
+    const jsonObject = JSON.parse(fs.readFileSync(path));
+    jsonObject.targets.debug.outFile = `build/${tempOutFileName}_debug.wasm`;
+    jsonObject.targets.debug.textFile = `build/${tempOutFileName}_debug.wat`;
+    jsonObject.targets.release.outFile = `build/${tempOutFileName}_release.wasm`;
+    jsonObject.targets.release.textFile = `build/${tempOutFileName}_release.wat`;
+    fs.writeFileSync(path, JSON.stringify(jsonObject, null, 4));
+}
+
+export function updateTestFile(testFilePath, asconfigJsonPath) {
+    const releaseBinContractFile = JSON.parse(fs.readFileSync(asconfigJsonPath)).targets.release.outFile;
+    const testCode = fs.readFileSync(testFilePath).toString();
+    const newTestCode = testCode.replaceAll('../build/release.wasm', `../${releaseBinContractFile}`);
+    fs.writeFileSync(testFilePath, newTestCode);
+}
+
+export function createJsonFile(path,data) {
     fs.writeFileSync(path,JSON.stringify(data, null, 4));
 }
-async function createKeyPairs(file) {
+
+export async function createKeyPairs(file) {
     const account = new Account();
     await account.generate();
     const kp = {
@@ -22,4 +59,3 @@ async function createKeyPairs(file) {
     fs.writeFileSync(file,JSON.stringify(kp, null, 4));
     return kp;
 }
-module.exports = {updatePackageJson,createTrinciJson,createKeyPairs};

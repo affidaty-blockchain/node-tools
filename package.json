@@ -1,35 +1,36 @@
 {
   "name": "create-blockchain",
-  "version": "1.0.17",
-  "description": "tool for creating smart contracts for blockchains and other uses for the blockchain",
+  "version": "1.0.30",
+  "description": "A tool for creating smart contracts for blockchains and other uses for the blockchain",
+  "type": "module",
   "main": "./src/index.js",
   "scripts": {
-    "start": "node ./src/index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+      "start": "node ./src/index.js",
+      "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
-    "type": "git",
-    "url": "git+https://github.com/affidaty-blockchain/node-tools.git"
+      "type": "git",
+      "url": "git+https://github.com/affidaty-blockchain/node-tools.git"
   },
   "keywords": [
-    "blockchain",
-    "trinci",
-    "smart",
-    "contract"
+      "blockchain",
+      "trinci",
+      "smart",
+      "contract"
   ],
   "bin": {
-    "create-blockchain": "./src/index.js"
+      "create-blockchain": "./src/index.js"
   },
   "author": "Affidaty S.p.a. - Trinci Blockchain",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/affidaty-blockchain/node-tools/issues"
+      "url": "https://github.com/affidaty-blockchain/node-tools/issues"
   },
   "homepage": "https://github.com/affidaty-blockchain/node-tools#readme",
   "dependencies": {
-    "@affidaty/t2-lib": "^2.0.0",
-    "chalk": "^2.4.1",
-    "inquirer": "^8.2.1",
-    "@affidaty/trinci-sdk-as": "^2.3.66"
+      "@affidaty/t2-lib": "^2.0.36",
+      "chalk": "^5.1.0",
+      "inquirer": "^9.1.3",
+      "@affidaty/trinci-sdk-as": "^2.3.62"
   }
 }
