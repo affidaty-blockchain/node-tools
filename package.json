@@ -30,6 +30,6 @@
     "@affidaty/t2-lib": "^2.0.0",
     "chalk": "^2.4.1",
     "inquirer": "^8.2.1",
-    "@affidaty/trinci-sdk-as": "^2.0.0"
+    "@affidaty/trinci-sdk-as": "^2.3.66"
   }
 }
