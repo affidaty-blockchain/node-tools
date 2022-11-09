@@ -1,6 +1,6 @@
 {
     "name": "create-blockchain",
-    "version": "1.0.31",
+    "version": "1.1.0",
     "description": "A tool for creating smart contracts for blockchains and other uses for the blockchain",
     "type": "module",
     "main": "./src/index.js",
@@ -28,9 +28,9 @@
     },
     "homepage": "https://github.com/affidaty-blockchain/node-tools#readme",
     "dependencies": {
-        "@affidaty/t2-lib": "^2.0.39",
+        "@affidaty/t2-lib": "^2.1.0",
         "chalk": "^5.1.2",
         "inquirer": "^9.1.4",
-        "@affidaty/trinci-sdk-as": "^2.3.66"
+        "@affidaty/trinci-sdk-as": "^2.4.3"
     }
 }
