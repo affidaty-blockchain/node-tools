@@ -1,6 +1,6 @@
 {
     "name": "create-blockchain",
-    "version": "1.1.1",
+    "version": "1.1.2",
     "description": "A tool for creating smart contracts for blockchains and other uses for the blockchain",
     "type": "module",
     "main": "./src/index.js",
@@ -31,6 +31,6 @@
         "@affidaty/t2-lib": "^2.1.0",
         "chalk": "^5.1.2",
         "inquirer": "^9.1.4",
-        "@affidaty/trinci-sdk-as": "^2.4.4"
+        "@affidaty/trinci-sdk-as": "^2.4.5"
     }
 }
