@@ -1,9 +1,7 @@
 'use strict';
 
 import fs from 'fs';
-import { Account, binConversions } from '@affidaty/t2-lib';
-
-const arrayBufferToBase58 = binConversions.arrayBufferToBase58;
+import { Account, base58Encode } from '@affidaty/t2-lib-core';
 
 export function updateJsonFile(path, newData) {
     const jsonObject = JSON.parse(fs.readFileSync(path));
@@ -53,8 +51,8 @@ export async function createKeyPairs(file) {
     await account.generate();
     const kp = {
         accountId : account.accountId,
-        publicKey : arrayBufferToBase58((await account.keyPair.publicKey.getRaw()).buffer),
-        privateKey : arrayBufferToBase58((await account.keyPair.privateKey.getPKCS8()).buffer),
+        publicKey : base58Encode(await account.keyPair.publicKey.getRaw()),
+        privateKey : base58Encode(await account.keyPair.privateKey.getPKCS8()),
     };
     fs.writeFileSync(file,JSON.stringify(kp, null, 4));
     return kp;
